@@ -4,10 +4,14 @@
  */
 package com.thnp.service;
 
+import com.thnp.pojo.Category;
+import java.util.List;
+
 /**
  *
  * @author nhatp
  */
 public interface CategoryService {
-    
+    List<Category> getCategories();
+    Category getCategoryById(int cateId);
 }

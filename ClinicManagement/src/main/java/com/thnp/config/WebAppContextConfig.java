@@ -6,13 +6,13 @@ package com.thnp.config;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
+import com.thnp.formatters.CategoryFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -35,7 +35,7 @@ import org.springframework.web.servlet.view.JstlView;
     "com.thnp.controller",
     "com.thnp.repository",
     "com.thnp.service"
-//    "com.dht.validator"
+    //"com.thnp.validator"
 })
 public class WebAppContextConfig implements WebMvcConfigurer {
 
@@ -57,6 +57,33 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     }
     
     @Bean
+    public LocalValidatorFactoryBean validator() {
+        LocalValidatorFactoryBean v = new LocalValidatorFactoryBean();
+        v.setValidationMessageSource(messageSource());
+        
+        return v;
+    }
+    
+//    @Bean
+//    public WebAppValidator productValidator() {
+//        
+//        Set<Validator> springValidators = new HashSet<>();
+//        springValidators.add(new ProductValidator());
+//        WebAppValidator v = new WebAppValidator();
+//        v.setSpringValidator(springValidators);
+//        
+//        return v;
+//    }
+    
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasename("messages");
+        
+        return source;
+    }
+    
+    @Bean
     public Cloudinary cloudinary() {
         Cloudinary c = new Cloudinary(ObjectUtils.asMap(
             "cloud_name", "dttcckcgd",
@@ -68,38 +95,11 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         return c;
     }
 
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new CategoryFormatter());
-//    }
-    
-//    @Bean
-//    public WebAppValidator productValidator() {
-//        Set<Validator> springValidators = new HashSet<>();
-//        springValidators.add(new ProductNameValidator());
-//        
-//        WebAppValidator v = new WebAppValidator();
-//        v.setSpringValidators(springValidators);
-//        
-//        return  v;
-//    }
-    
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        LocalValidatorFactoryBean v = new LocalValidatorFactoryBean();
-        v.setValidationMessageSource(messageSource());
-        
-        return v;
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new CategoryFormatter());
     }
-    
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasename("messages");
-        
-        return source;
-    }
-    
+ 
     @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();

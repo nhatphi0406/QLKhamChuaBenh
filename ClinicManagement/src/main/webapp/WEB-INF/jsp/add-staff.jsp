@@ -1,6 +1,6 @@
 <%-- 
-    Document   : register
-    Created on : 19 Aug 2022, 15:39:21
+    Document   : add-staff
+    Created on : 31 Aug 2022, 21:13:44
     Author     : nhatp
 --%>
 
@@ -8,7 +8,7 @@
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1 class="text-center text-danger">DANG KY</h1>
+<h1 class="text-center text-danger">THEM NHAN VIEN</h1>
 
 <c:if test="${errMsg != null}">
     <div class="alert alert-danger">
@@ -16,7 +16,7 @@
     </div>
 </c:if>
 
-<c:url value="/register" var="action" />
+<c:url value="/admin/staff/add-staff" var="action" />
 
 <form:form method="post" action="${action}" 
            enctype="multipart/form-data" modelAttribute="user">
@@ -55,10 +55,17 @@
         <form:input type="password" id="confirm-password" path="confirmPassword" class="form-control" />
     </div>
     <div class="form-group">
+        <label for="role">Chuc vu</label>
+        <form:select id="role" path="userRole" class="form-control">
+            <option value="ROLE_DOCTOR">Bac si</option>
+            <option value="ROLE_NURSE">Y ta</option>
+        </form:select>
+    </div>
+    <div class="form-group">
         <label for="avatar">Anh</label>
         <form:input type="file" class="form-control" id="avatar" path="file" />
     </div>
     <div class="form-group">
-        <input type="submit" value="DANG KY" class="btn btn-danger" />
+        <input type="submit" value="THEM" class="btn btn-danger" />
     </div>
 </form:form>

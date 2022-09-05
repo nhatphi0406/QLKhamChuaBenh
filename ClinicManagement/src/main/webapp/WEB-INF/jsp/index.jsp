@@ -7,4 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>Hehe</h1>
+<h1 class="text-center text-danger">QUAN LY KHAM CHUA BENH</h1>
+
+

@@ -5,12 +5,14 @@
 package com.thnp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author nhatp
  */
 @Controller
+@RequestMapping("/doctor")
 public class DoctorController {
     
 }

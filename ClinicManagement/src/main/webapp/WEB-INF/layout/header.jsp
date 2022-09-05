@@ -60,7 +60,27 @@
                 <li>
                     <a href="<c:url value="/admin/staff"/>" class="nav-link text-danger">Quan nhan vien</a>
                 </li>
-            </sec:authorize> 
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_SYSADMIN')">
+                <li>
+                    <a href="<c:url value="/sysadmin"/>" class="nav-link text-danger">Cap quyen admin</a>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_DOCTOR')">
+                <li>
+                    <a href="<c:url value="/doctor/prescription"/>" class="nav-link text-danger">Don thuoc</a>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_NURSE')">
+                <li>
+                    <a href="<c:url value="/nurse/confirm"/>" class="nav-link text-danger">Xac nhan lich kham</a>
+                </li>
+            </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                <li>
+                    <a href="<c:url value="/user/book"/>" class="nav-link text-danger">Dat lich kham</a>
+                </li>
+            </sec:authorize>
         </ul>
     </div>
 </nav>

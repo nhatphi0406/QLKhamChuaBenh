@@ -4,6 +4,7 @@
  */
 package com.thnp.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -11,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,10 +24,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -52,14 +58,16 @@ public class Product implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @NotNull(message = "{product.name.err}")
+    @Size(min = 1, max = 255, message = "{product.name.lenErr}")
     @Column(name = "name")
     private String name;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
     @Column(name = "price")
+    @Min(value = 10000, message = "{product.price.minErr}")
+    @Max(value = 1000000, message = "{product.price.maxErr}")
     private Long price;
     @Size(max = 255)
     @Column(name = "image")
@@ -70,10 +78,15 @@ public class Product implements Serializable {
     @Column(name = "active")
     private Boolean active;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //@JsonIgnore
+    @NotNull(message = "{product.category.nullErr}")
     private Category categoryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Collection<PrescriptionDetail> prescriptionDetailCollection;
+
+    @Transient
+    private MultipartFile file;
 
     public Product() {
     }
@@ -182,7 +195,22 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "com.thnp.pojo.Product[ id=" + id + " ]";
+        //return "com.thnp.pojo.Product[ id=" + id + " ]";
+        return name;
     }
-    
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
 }

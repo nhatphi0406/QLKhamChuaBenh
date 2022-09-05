@@ -19,4 +19,8 @@ public interface UserService extends UserDetailsService {
     User getUserById(int userId);
     long coutStaff();
     boolean addOrUpdate(User user);
+    List<User> getUserByAdmin(String kw, int page);
+    boolean deleteStaff(int id);
+    boolean addStaff(User user);
+    boolean updateAdmin(int id);
 }

@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +51,7 @@ public class Category implements Serializable {
     @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "categoryId")
     private Collection<Product> productCollection;
 
     public Category() {
@@ -120,7 +121,8 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "com.thnp.pojo.Category[ id=" + id + " ]";
+        //return "com.thnp.pojo.Category[ id=" + id + " ]";
+        return this.name;
     }
     
 }

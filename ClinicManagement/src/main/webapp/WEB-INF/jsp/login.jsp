@@ -16,7 +16,7 @@
 
 <c:if test="${param.accessDenied != null}">
     <div class="alert alert-danger">
-        Da co loi xay ra! Vui long quay lai sau!!!
+        Ban khong co quyen truy cap!!!
     </div>
 </c:if>
 
@@ -32,7 +32,6 @@
         <label for="username">Password</label>
         <input type="text" id="password" name="password" class="form-control" />
     </div>
-    <br/>
     <div class="form-group">
         <input type="submit" value="DANG NHAP" class="btn btn-danger"/>
     </div>
