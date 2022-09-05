@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="baseLayout" template="/WEB-INF/layout/base.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    </definition>
+    <definition name="index" extends="baseLayout">
+        <put-attribute name="title" value="TRANG CHU" />
+        <put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="DANG NHAP" />
+        <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
+    </definition>
+    <definition name="register" extends="baseLayout">
+        <put-attribute name="title" value="DANG KY" />
+        <put-attribute name="content" value="/WEB-INF/jsp/register.jsp" />
+    </definition>
+    <definition name="add-product" extends="baseLayout">
+        <put-attribute name="title" value="THEM SAN PHAM" />
+        <put-attribute name="content" value="/WEB-INF/jsp/add-product.jsp" />
+    </definition>
+    <definition name="product" extends="baseLayout">
+        <put-attribute name="title" value="SAN PHAM" />
+        <put-attribute name="content" value="/WEB-INF/jsp/product.jsp" />
+    </definition>
+    <definition name="product-detail" extends="baseLayout">
+        <put-attribute name="title" value="CHI TIET SAN PHAM" />
+        <put-attribute name="content" value="/WEB-INF/jsp/product-detail.jsp" />
+    </definition>
+    <definition name="update-product" extends="baseLayout">
+        <put-attribute name="title" value="CAP NHAT SAN PHAM" />
+        <put-attribute name="content" value="/WEB-INF/jsp/update-product.jsp" />
+    </definition>
+    <definition name="staff" extends="baseLayout">
+        <put-attribute name="title" value="QUAN LY NHAN VIEN" />
+        <put-attribute name="content" value="/WEB-INF/jsp/staff.jsp" />
+    </definition>
+    <definition name="staff-detail" extends="baseLayout">
+        <put-attribute name="title" value="CHI TIET NHAN VIEN" />
+        <put-attribute name="content" value="/WEB-INF/jsp/staff-detail.jsp" />
+    </definition>
+    <definition name="add-staff" extends="baseLayout">
+        <put-attribute name="title" value="THEM NHAN VIEN" />
+        <put-attribute name="content" value="/WEB-INF/jsp/add-staff.jsp" />
+    </definition>
+    <definition name="super-admin" extends="baseLayout">
+        <put-attribute name="title" value="CAP QUYEN ADMIN" />
+        <put-attribute name="content" value="/WEB-INF/jsp/super-admin.jsp" />
+    </definition>
+</tiles-definitions>
